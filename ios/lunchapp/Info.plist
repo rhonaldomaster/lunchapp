@@ -55,10 +55,7 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>GT-Walsheim-Bold.ttf</string>
-		<string>GT-Walsheim-Medium.ttf</string>
 		<string>GTWalsheim-Regular.ttf</string>
-		<string>GTWalsheim-Bold.ttf</string>
 		<string>GTWalsheim-Medium.ttf</string>
 		<string>GTWalsheimBold.ttf</string>
 	</array>
