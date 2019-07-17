@@ -5,13 +5,15 @@ import {
 } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import SignInScreen from './components/signin';
+import HomeScreen from './components/home';
 
 const AppNavigator = createStackNavigator(
   {
+    Home: HomeScreen,
     SignIn: SignInScreen,
   },
   {
-    initialRouteName: "SignIn",
+    initialRouteName: "Home",
     defaultNavigationOptions: {
       header: null
     }
