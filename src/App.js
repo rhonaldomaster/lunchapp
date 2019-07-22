@@ -3,20 +3,30 @@ import {
   AppRegistry,    // Registers the app
   StatusBar,      // Allows to hide the satatus bar
 } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import SignInScreen from './components/signin';
 import HomeScreen from './components/home';
 
-const AppNavigator = createStackNavigator(
+const AppStack = createStackNavigator(
   {
     Home: HomeScreen,
-    SignIn: SignInScreen,
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
       header: null
     }
+  }
+);
+
+const AppNavigator = createSwitchNavigator(
+  {
+    Home: HomeScreen,
+    SignIn: SignInScreen,
+    App: AppStack
+  },
+  {
+    initialRouteName: 'SignIn',
   }
 );
 

@@ -25,7 +25,12 @@ export default class SignIn extends Component {
         <Text style={styles.title}>Sign in with your <Text style={styles.highlightedd}>Koombea</Text> account</Text>
         <View style={styles.signInBox}>
           <Text style={styles.loginTitle}>Login</Text>
-          <Button text="Sign in" touchableStyle={styles.touchableStyle} buttonStyle={styles.button} textStyle={styles.buttonText} onPress={() => this.signIn()} />
+          <Button text="Sign in"
+            touchableStyle={styles.touchableStyle}
+            buttonStyle={styles.button}
+            textStyle={styles.buttonText}
+            onPress={() => this.signIn()}
+          />
         </View>
       </View>
     );
@@ -33,6 +38,7 @@ export default class SignIn extends Component {
   
   signIn() {
     // todo
+    this.props.navigation.navigate('Home');
   }
 }
 

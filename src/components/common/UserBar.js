@@ -29,18 +29,18 @@ export default class UserBar extends Component {
     return (
       <View style={styles.layout} navigation={this.props.navigation}>
         <View style={styles.container}>
-          <View style={styles.containerItem}>
+          <TouchableOpacity style={styles.containerItem}>
             <Image source={homeImage} />
             <Text style={this.state.currentScreen == 1 ? styles.active : styles.inactive}>Home</Text>
-          </View>
-          <View style={styles.containerItem}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.containerItem}>
             <Image source={settingsImage} />
             <Text style={this.state.currentScreen == 2 ? styles.active : styles.inactive}>History</Text>
-          </View>
-          <View style={styles.containerItem}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.containerItem}>
             <Image source={eventImage} />
             <Text style={this.state.currentScreen == 3 ? styles.active : styles.inactive}>Calendar</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     );

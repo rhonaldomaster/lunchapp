@@ -3,10 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 import Button from '../common/Button';
 import UserBar from '../common/UserBar';
+import WeekList from './WeekList';
 
 export default class Home extends Component {
   constructor(props) {
@@ -19,25 +21,69 @@ export default class Home extends Component {
     };
   }
 
+  getWeekDayName(day) {
+    if (typeof day === 'undefined' || !day) {
+      return '';
+    }
+    const names = [
+      'Sunday', 'Monday', 'Tuesday',
+      'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    ];
+    return names[day];
+  }
+
+  getMonthName(month) {
+    if (typeof month === 'undefined' || !month) {
+      return '';
+    }
+    const names = [
+      'January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'
+    ];
+    return names[month];
+  }
+
   showNewCheckin() {
     // todo
   }
 
   render() {
+    const date = new Date();
+    const day = date.getDate();
+    const weekDay = date.getDay();
+    const month = date.getMonth();
     return (
       <View style={styles.layout} navigation={this.props.navigation}>
-        <View style={styles.heading}>
-          <View style={styles.userImage}>
-            <Image source={require('../../assets/images/user-logo.png')} />
+        <ScrollView>
+          <View style={styles.heading}>
+            <View style={styles.userImage}>
+              <Image source={require('../../assets/images/user-logo.png')} />
+            </View>
+            <View style={styles.nameContainer}>
+              <Text style={styles.hello}>Hello,</Text>
+              <Text style={styles.name}>Koombea</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                text="New Checkin"
+                touchableStyle={styles.touchableStyle}
+                buttonStyle={styles.button}
+                textStyle={styles.buttonText}
+                onPress={() => this.showNewCheckin()}
+              />
+            </View>
           </View>
-          <View style={styles.nameContainer}>
-            <Text style={styles.hello}>Hello,</Text>
-            <Text style={styles.name}>Koombea</Text>
+          <View style={styles.dateContainer}>
+            <Text style={styles.date}>
+              <Text style={styles.dateToday}>Today </Text>
+              {this.getWeekDayName(weekDay)}, {this.getMonthName(month)} {day}
+            </Text>
           </View>
-          <View style={styles.buttonContainer}>
-            <Button text="New Checkin" touchableStyle={styles.touchableStyle} buttonStyle={styles.button} textStyle={styles.buttonText} onPress={() => this.showNewCheckin()} />
+          <View style={styles.dateContainer}>
+            <WeekList />
           </View>
-        </View>
+        </ScrollView>
         <UserBar navigation={this.props.navigation} screenNumber="1" />
       </View>
     );
@@ -100,5 +146,21 @@ const styles = StyleSheet.create({
     letterSpacing: -0.09,
     lineHeight: 20,
     textAlign: 'center',
+  },
+  dateContainer: {
+    display: 'flex',
+    flexBasis: '100%',
+    flexDirection: 'row',
+    marginTop: 29
+  },
+  date: {
+    color: '#26666B',
+    fontFamily: 'GTWalsheim-Regular',
+    fontSize: 14,
+    letterSpacing: -0.31,
+    lineHeight: 23,
+  },
+  dateToday: {
+    fontFamily: 'GTWalsheimBold',
   }
 });
