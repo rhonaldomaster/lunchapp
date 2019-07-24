@@ -9,12 +9,25 @@ import {
 import Button from '../common/Button';
 import UserBar from '../common/UserBar';
 import WeekList from './WeekList';
+import Checkin from '../common/Checkin';
+import CheckinForm from '../common/CheckinForm';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkins: [],
+      checkins: [
+        {
+          projectName: 'BANCOLOMBIA S.A  Prometeo',
+          day: 10,
+          dayName: 'Monday',
+          monthName: 'Jul',
+          hours: 8,
+          id: 1,
+          message: "I've been on UX meeting with Bancolombia UX Leader.",
+          title: 'Last Time Checked'
+        }
+      ],
       loading: false,
       user: {},
       showError: false
@@ -53,6 +66,10 @@ export default class Home extends Component {
     const day = date.getDate();
     const weekDay = date.getDay();
     const month = date.getMonth();
+    let lastCheckin = null;
+    if (this.state.checkins.length > 0) {
+      lastCheckin = this.state.checkins[this.state.checkins.length - 1]
+    }
     return (
       <View style={styles.layout} navigation={this.props.navigation}>
         <ScrollView>
@@ -82,6 +99,12 @@ export default class Home extends Component {
           </View>
           <View style={styles.dateContainer}>
             <WeekList />
+          </View>
+          <View style={styles.dateContainer}>
+            <Checkin item={lastCheckin} />
+          </View>
+          <View style={styles.dateContainer}>
+            <CheckinForm />
           </View>
         </ScrollView>
         <UserBar navigation={this.props.navigation} screenNumber="1" />
